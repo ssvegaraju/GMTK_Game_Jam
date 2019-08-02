@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Jump() {
-        rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rigid.velocity = Vector2.up * jumpForce;
         onGround = false;
         rigid.angularVelocity = 0;
     }
