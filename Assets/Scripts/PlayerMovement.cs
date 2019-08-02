@@ -11,10 +11,12 @@ public class PlayerMovement : MonoBehaviour
     [Range(0f, 1f)]
     public float stopSpeed = 0.5f;
     public float jumpForce;
+    public float rotateSpeed = 4f;
 
     public float RotateSpeed = 30f;
 
     private float horizontal, vertical;
+    private bool rotate = false;
     private bool onGround = false;
 
     private Rigidbody2D rigid;
@@ -29,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update() {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        rotate = Input.GetButton("Jump");
+
     }
 
     private void FixedUpdate()
@@ -44,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
                 }
             rigid.velocity += Vector2.right * horizontal * acceleration * Time.fixedDeltaTime;
         }
+        if (rotate)
+            rigid.MoveRotation(transform.eulerAngles.z - rotateSpeed);
         if (!onGround) {
             rigid.velocity += Vector2.up * Physics2D.gravity.y * 2.5f * Time.fixedDeltaTime;
         }
@@ -53,8 +59,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Jump() {
-        rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rigid.velocity = Vector2.up * jumpForce;
         onGround = false;
+        rigid.angularVelocity = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
