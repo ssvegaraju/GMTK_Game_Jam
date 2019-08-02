@@ -5,14 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D)), RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed;
+    public float acceleration;
     [Range(1, 15)]
-    public float maxSpeed = 8f;
+    public float moveSpeed = 8f;
     [Range(0f, 1f)]
     public float stopSpeed = 0.5f;
     public float jumpForce;
 
     private float horizontal, vertical;
+    private bool onGround = false;
 
     private Rigidbody2D rigid;
     private Collider2D col;
@@ -33,8 +34,25 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(horizontal) < 0.1f) {
             rigid.velocity = Vector2.Lerp(rigid.velocity, Vector2.up * rigid.velocity.y, stopSpeed);
         } else {
-            rigid.velocity += Vector2.right * horizontal * moveSpeed * Time.fixedDeltaTime;
+            if (Mathf.Abs(rigid.velocity.x) < moveSpeed) 
+                rigid.velocity += Vector2.right * horizontal * acceleration * Time.fixedDeltaTime;
         }
+        if (!onGround) {
+            rigid.velocity += Vector2.up * Physics2D.gravity.y * 2.5f * Time.fixedDeltaTime;
+        }
+        if (onGround && vertical > 0.1f) {
+            Jump();
+        }
+    }
 
+    private void Jump() {
+        rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        onGround = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Ground")) {
+            onGround = true;
+        }
     }
 }

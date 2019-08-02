@@ -152,9 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa36a3b319c034f40b28e7e482da7636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  maxSpeed: 8
-  jumpForce: 0
+  acceleration: 16.79
+  moveSpeed: 8
+  stopSpeed: 1
+  jumpForce: 16
 --- !u!50 &419358178
 Rigidbody2D:
   serializedVersion: 4
@@ -171,7 +172,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c4b6cb4f39978f247939a8923fef2d27, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -361,9 +362,9 @@ GameObject:
   - component: {fileID: 707973536}
   - component: {fileID: 707973535}
   - component: {fileID: 707973534}
-  m_Layer: 0
-  m_Name: New Sprite
-  m_TagString: Untagged
+  m_Layer: 8
+  m_Name: Ground
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
