@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float stopSpeed = 0.5f;
     public float jumpForce;
 
+    public float RotateSpeed = 30f;
+
     private float horizontal, vertical;
     private bool onGround = false;
 
@@ -34,8 +36,13 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(horizontal) < 0.1f) {
             rigid.velocity = Vector2.Lerp(rigid.velocity, Vector2.up * rigid.velocity.y, stopSpeed);
         } else {
-            if (Mathf.Abs(rigid.velocity.x) < moveSpeed) 
-                rigid.velocity += Vector2.right * horizontal * acceleration * Time.fixedDeltaTime;
+            if (Mathf.Abs(rigid.velocity.x) < moveSpeed)
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    Debug.Log("Here");
+                    transform.Rotate(-Vector3.forward * horizontal * RotateSpeed * Time.deltaTime);
+                }
+            rigid.velocity += Vector2.right * horizontal * acceleration * Time.fixedDeltaTime;
         }
         if (!onGround) {
             rigid.velocity += Vector2.up * Physics2D.gravity.y * 2.5f * Time.fixedDeltaTime;

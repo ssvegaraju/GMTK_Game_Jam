@@ -156,6 +156,7 @@ MonoBehaviour:
   moveSpeed: 8
   stopSpeed: 1
   jumpForce: 16
+  RotateSpeed: 1000
 --- !u!50 &419358178
 Rigidbody2D:
   serializedVersion: 4
