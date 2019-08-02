@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float rotateSpeed = 4f;
 
     private float horizontal, vertical;
+    private bool rotate = false;
     private bool onGround = false;
 
     private Rigidbody2D rigid;
@@ -28,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update() {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        rotate = Input.GetButton("Jump");
+
     }
 
     private void FixedUpdate()
@@ -38,8 +41,8 @@ public class PlayerMovement : MonoBehaviour
             if (Mathf.Abs(rigid.velocity.x) < moveSpeed) 
                 rigid.velocity += Vector2.right * horizontal * acceleration * Time.fixedDeltaTime;
         }
-        if (Mathf.Abs(horizontal) > 0.1f && onGround)
-            rigid.MoveRotation(transform.eulerAngles.z - rotateSpeed * Mathf.Sign(horizontal));
+        if (rotate)
+            rigid.MoveRotation(transform.eulerAngles.z - rotateSpeed);
         if (!onGround) {
             rigid.velocity += Vector2.up * Physics2D.gravity.y * 2.5f * Time.fixedDeltaTime;
         }
