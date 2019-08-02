@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [Range(0f, 1f)]
     public float stopSpeed = 0.5f;
     public float jumpForce;
+    public float rotateSpeed = 4f;
 
     private float horizontal, vertical;
     private bool onGround = false;
@@ -37,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
             if (Mathf.Abs(rigid.velocity.x) < moveSpeed) 
                 rigid.velocity += Vector2.right * horizontal * acceleration * Time.fixedDeltaTime;
         }
+        if (Mathf.Abs(horizontal) > 0.1f && onGround)
+            rigid.MoveRotation(transform.eulerAngles.z - rotateSpeed * Mathf.Sign(horizontal));
         if (!onGround) {
             rigid.velocity += Vector2.up * Physics2D.gravity.y * 2.5f * Time.fixedDeltaTime;
         }
@@ -48,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump() {
         rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         onGround = false;
+        rigid.angularVelocity = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
