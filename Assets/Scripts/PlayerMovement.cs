@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [Range(0f, 1f)]
     public float stopSpeed = 0.5f;
     public float jumpForce;
+    public float unsnapReleaseForce = 10;
     public float rotateSpeed = 4f;
 
     public float RotateSpeed = 30f;
@@ -32,25 +33,20 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         rotate = Input.GetButton("Jump");
-
+        onGround = (SnapToPosition.snapped) ? false : onGround;
     }
 
     private void FixedUpdate()
     {
-        if (Mathf.Abs(horizontal) < 0.1f) {
+        if (onGround && Mathf.Abs(horizontal) < 0.1f) {
             rigid.velocity = Vector2.Lerp(rigid.velocity, Vector2.up * rigid.velocity.y, stopSpeed);
         } else {
             if (Mathf.Abs(rigid.velocity.x) < moveSpeed)
-                if (Input.GetKey(KeyCode.Space))
-                {
-                    Debug.Log("Here");
-                    transform.Rotate(-Vector3.forward * horizontal * RotateSpeed * Time.deltaTime);
-                }
             rigid.velocity += Vector2.right * horizontal * acceleration * Time.fixedDeltaTime;
         }
         if (rotate)
             rigid.MoveRotation(transform.eulerAngles.z - rotateSpeed);
-        if (!onGround) {
+        if (!onGround && !SnapToPosition.snapped) {
             rigid.velocity += Vector2.up * Physics2D.gravity.y * 2.5f * Time.fixedDeltaTime;
         }
         if (onGround && vertical > 0.1f) {
@@ -68,5 +64,10 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground")) {
             onGround = true;
         }
+    }
+
+    public void Unsnap(float dir) {
+        transform.eulerAngles = Vector3.forward * dir;
+        rigid.AddForce(transform.up.normalized * unsnapReleaseForce, ForceMode2D.Impulse);
     }
 }
