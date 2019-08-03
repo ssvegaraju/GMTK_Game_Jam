@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SnapToPosition : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class SnapToPosition : MonoBehaviour
     public GameObject objectToSnapTo;
     public static bool snapped = false;
     private float vertical;
+
+    public UnityEvent OnSnap, OnUnsnap;
 
     private float snapTime, releaseTime;
     // Start is called before the first frame update
@@ -27,6 +30,9 @@ public class SnapToPosition : MonoBehaviour
         {
             snapped = true;
             snapTime = Time.time;
+            if (OnSnap != null) {
+                OnSnap.Invoke();
+            }
         }
 
         if (snapped)
@@ -42,6 +48,9 @@ public class SnapToPosition : MonoBehaviour
                 objectToSnap.Unsnap(dir);
                 releaseTime = Time.time;
                 snapped = false;
+                if (OnUnsnap != null) {
+                    OnUnsnap.Invoke();
+                }
             }
         }
     }

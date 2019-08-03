@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal, vertical;
     private bool rotate = false;
     private bool onGround = false;
+    
+    private bool isDead = false;
 
     private Rigidbody2D rigid;
     private Collider2D col;
@@ -38,19 +40,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (onGround && Mathf.Abs(horizontal) < 0.1f) {
-            rigid.velocity = Vector2.Lerp(rigid.velocity, Vector2.up * rigid.velocity.y, stopSpeed);
+        if (!isDead) {
+            if (onGround && Mathf.Abs(horizontal) < 0.1f) {
+                rigid.velocity = Vector2.Lerp(rigid.velocity, Vector2.up * rigid.velocity.y, stopSpeed);
+            } else {
+                if (Mathf.Abs(rigid.velocity.x) < moveSpeed) 
+                    rigid.velocity += Vector2.right * horizontal * acceleration * Time.fixedDeltaTime;
+            }
+            if (rotate)
+                rigid.MoveRotation(transform.eulerAngles.z - rotateSpeed);
+            if (!onGround) {
+                rigid.velocity += Vector2.up * Physics2D.gravity.y * 2.5f * Time.fixedDeltaTime;
+            }
+            if (onGround && vertical > 0.1f) {
+                Jump();
+            }
         } else {
-            if (Mathf.Abs(rigid.velocity.x) < moveSpeed)
-            rigid.velocity += Vector2.right * horizontal * acceleration * Time.fixedDeltaTime;
-        }
-        if (rotate)
             rigid.MoveRotation(transform.eulerAngles.z - rotateSpeed);
-        if (!onGround && !SnapToPosition.snapped) {
-            rigid.velocity += Vector2.up * Physics2D.gravity.y * 2.5f * Time.fixedDeltaTime;
-        }
-        if (onGround && vertical > 0.1f) {
-            Jump();
         }
     }
 
@@ -63,6 +69,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Ground")) {
             onGround = true;
+        }
+        if (collision.gameObject.CompareTag("BAD")) {
+            rigid.gravityScale = 0f;
+            isDead = true;
+            GameObject.Find("Main Camera").GetComponent<CameraFollow>().ShakeScreen(4f, 1f);
+            Debug.Log("Test");
+            GameObject.Find("SceneManager").GetComponent<SceneTransitions>().SwitchScene();
         }
     }
 
