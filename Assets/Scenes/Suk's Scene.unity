@@ -163,6 +163,7 @@ MonoBehaviour:
   startTransform: {x: 0, y: 0, z: 0}
   offset: {x: 0, y: 0, z: -10}
   followSmoothing: 0.547
+  minMaxCameraZoom: {x: 5, y: 10}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -664,6 +665,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6536075161636665706, guid: 2d7068959c7504bfbb95c6dd790aa2e0,
         type: 3}
+      propertyPath: OnSnap.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536075161636665706, guid: 2d7068959c7504bfbb95c6dd790aa2e0,
+        type: 3}
       propertyPath: detectionRadius
       value: 0.89
       objectReference: {fileID: 0}
@@ -671,6 +677,16 @@ PrefabInstance:
         type: 3}
       propertyPath: offset.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536075161636665706, guid: 2d7068959c7504bfbb95c6dd790aa2e0,
+        type: 3}
+      propertyPath: OnSnap.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536075161636665706, guid: 2d7068959c7504bfbb95c6dd790aa2e0,
+        type: 3}
+      propertyPath: OnSnap.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6536075160258789461, guid: 2d7068959c7504bfbb95c6dd790aa2e0,
         type: 3}

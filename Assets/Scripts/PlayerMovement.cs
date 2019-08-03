@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public float unsnapReleaseForce = 10;
     public float rotateSpeed = 4f;
 
-    private float horizontal, vertical;
+    private float horizontal;
+    private bool vertical;
     private bool rotate = false;
     private bool onGround = false;
 
@@ -32,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update() {
         horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        rotate = Input.GetButton("Jump");
+        vertical = Input.GetButtonDown("Jump");
+        rotate = Input.GetButton("Rotate");
     }
 
     private void FixedUpdate()
@@ -50,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
             if (!onGround) {
                 rigid.velocity += Vector2.up * Physics2D.gravity.y * 2.5f * Time.fixedDeltaTime;
             }
-            if (onGround && vertical > 0.1f) {
+            if (onGround && vertical) {
                 Jump();
             }
         } else {
@@ -60,9 +61,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnSnap() {
         isSnapped = true;
+        onGround = true;
     }
 
     public void OnUnsnap() {
+        onGround = true;
         rigid.AddForce(transform.up.normalized * unsnapReleaseForce, ForceMode2D.Impulse);
         isSnapped = false;
     }

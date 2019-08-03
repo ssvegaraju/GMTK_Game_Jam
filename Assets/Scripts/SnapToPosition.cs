@@ -10,8 +10,6 @@ public class SnapToPosition : MonoBehaviour
     public PlayerMovement objectToSnap;
     public GameObject objectToSnapTo;
     private bool snapped = false;
-    private float vertical;
-
 
     public UnityEvent OnSnap, OnUnsnap;
 
@@ -32,10 +30,6 @@ public class SnapToPosition : MonoBehaviour
         OnUnsnap.AddListener(delegate () {
             objectToSnap.OnUnsnap();
         });
-    }
-
-    private void Update() {
-        vertical = Input.GetAxis("Vertical");
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -60,7 +54,7 @@ public class SnapToPosition : MonoBehaviour
         while (snapped || Time.time - startTime < 0.5f) {
             objectToSnap.transform.position = objectToSnapTo.transform.position;
             objectToSnap.transform.rotation = objectToSnapTo.transform.rotation;
-            snapped = vertical < 0.1f;
+            snapped = !Input.GetButtonDown("Jump");
             yield return null;
         }
         Unsnap();
