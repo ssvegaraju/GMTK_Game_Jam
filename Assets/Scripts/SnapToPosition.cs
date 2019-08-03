@@ -61,9 +61,7 @@ public class SnapToPosition : MonoBehaviour
     }
 
     private void Unsnap() {
-        float dir = objectToSnapTo.transform.eulerAngles.z + 60;
-        objectToSnap.transform.eulerAngles = Vector3.forward * dir;
-        objectToSnap.transform.Translate(objectToSnap.transform.up.normalized * (detectionRadius + 0.3f));
+        objectToSnap.transform.eulerAngles = objectToSnapTo.transform.eulerAngles + Vector3.forward * 60;
         snapped = false;
         if (OnUnsnap != null) {
             OnUnsnap.Invoke();

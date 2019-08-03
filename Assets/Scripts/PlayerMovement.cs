@@ -65,8 +65,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void OnUnsnap() {
-        onGround = true;
-        rigid.AddForce(transform.up.normalized * unsnapReleaseForce, ForceMode2D.Impulse);
+        rigid.velocity = transform.up * unsnapReleaseForce;
+        Invoke("UnsnapComplete", 1);
+    }
+
+    private void UnsnapComplete() {
         isSnapped = false;
     }
 
