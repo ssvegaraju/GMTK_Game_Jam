@@ -13,6 +13,8 @@ public class CameraFollow : MonoBehaviour
     [Range(0f, 1f)]
     public float followSmoothing;
 
+    public Vector2 minMaxCameraZoom;
+
     private bool stopFollowing = false;
 
     void Awake(){
