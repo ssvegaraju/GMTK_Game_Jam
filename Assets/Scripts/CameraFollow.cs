@@ -5,6 +5,9 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform target;
+    private Rigidbody2D rigid;
+    private PlayerMovement pm;
+    private Camera cam;
 
     public static CameraFollow instance;
 	public Vector3 startTransform;
@@ -15,7 +18,7 @@ public class CameraFollow : MonoBehaviour
 
     public Vector2 minMaxCameraZoom;
 
-    private bool stopFollowing = false;
+    private bool initialized = false;
 
     void Awake(){
         if (instance == null)
@@ -23,10 +26,16 @@ public class CameraFollow : MonoBehaviour
         else
             Destroy(gameObject);
         startTransform = transform.position;
+        pm = FindObjectOfType<PlayerMovement>();
+        if (target == null) {
+            target = pm.transform;
+        } 
+        rigid = target.GetComponent<Rigidbody2D>();
+        cam = GetComponent<Camera>();
+        initialized = true;
 	}
 
     public void ShakeScreen(float t, float strength){
-        stopFollowing = true;
         startTransform = transform.position;
         StartCoroutine(ScreenShake(t, strength));
 	}
@@ -34,10 +43,10 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //if (!stopFollowing) {
-            transform.position = Vector3.Lerp(transform.position, target.position + offset, followSmoothing);
-            startTransform = transform.position;
-       // }
+        transform.position = Vector3.Lerp(transform.position, target.position + offset, followSmoothing);
+        startTransform = transform.position;
+        if (initialized)
+            cam.orthographicSize = Mathf.Lerp(minMaxCameraZoom.x, minMaxCameraZoom.y, Time.fixedDeltaTime * rigid.velocity.sqrMagnitude / (pm.moveSpeed));
     }
 
     IEnumerator ScreenShake(float t, float strength){
