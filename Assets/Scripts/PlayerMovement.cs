@@ -14,12 +14,11 @@ public class PlayerMovement : MonoBehaviour
     public float unsnapReleaseForce = 10;
     public float rotateSpeed = 4f;
 
-    public float RotateSpeed = 30f;
-
     private float horizontal, vertical;
     private bool rotate = false;
     private bool onGround = false;
-    
+
+    private bool isSnapped = false;
     private bool isDead = false;
 
     private Rigidbody2D rigid;
@@ -35,12 +34,11 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         rotate = Input.GetButton("Jump");
-        onGround = (SnapToPosition.snapped) ? false : onGround;
     }
 
     private void FixedUpdate()
     {
-        if (!isDead) {
+        if (!isDead && !isSnapped) {
             if (onGround && Mathf.Abs(horizontal) < 0.1f) {
                 rigid.velocity = Vector2.Lerp(rigid.velocity, Vector2.up * rigid.velocity.y, stopSpeed);
             } else {
@@ -60,6 +58,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnSnap() {
+        isSnapped = true;
+    }
+
+    public void OnUnsnap() {
+        rigid.AddForce(transform.up.normalized * unsnapReleaseForce, ForceMode2D.Impulse);
+        isSnapped = false;
+    }
+
     private void Jump() {
         rigid.velocity = Vector2.up * jumpForce;
         onGround = false;
@@ -68,19 +75,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Ground")) {
-            onGround = true;
+            if (transform.position.y > collision.transform.position.y)
+                onGround = true;
         }
         if (collision.gameObject.CompareTag("BAD")) {
             rigid.gravityScale = 0f;
             isDead = true;
             GameObject.Find("Main Camera").GetComponent<CameraFollow>().ShakeScreen(4f, 1f);
-            Debug.Log("Test");
             GameObject.Find("SceneManager").GetComponent<SceneTransitions>().SwitchScene();
         }
-    }
-
-    public void Unsnap(float dir) {
-        transform.eulerAngles = Vector3.forward * dir;
-        rigid.AddForce(transform.up.normalized * unsnapReleaseForce, ForceMode2D.Impulse);
     }
 }
