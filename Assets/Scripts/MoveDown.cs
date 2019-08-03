@@ -16,6 +16,8 @@ public class MoveDown : MonoBehaviour
     }
 
     public void SetAnimatorTrigger(string trigger) {
+        if (anim == null)
+            anim = GetComponent<Animator>();
         anim.SetTrigger(trigger);
     }
 }
