@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class SnapToPosition : MonoBehaviour
 {
-    public GameObject objectToSnap;
+    public PlayerMovement objectToSnap;
     public GameObject objectToSnapTo;
-    private bool snapped = false;
+    public static bool snapped = false;
     private float vertical;
 
+    private float snapTime, releaseTime;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (objectToSnap == null)
+            objectToSnap = FindObjectOfType<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -20,21 +22,25 @@ public class SnapToPosition : MonoBehaviour
     {
         vertical = Input.GetAxis("Vertical");
 
-        float distance = Vector2.Distance(objectToSnap.gameObject.transform.position, gameObject.transform.position);
-        if (distance < 0.5f)
+        float distance = Vector2.Distance(objectToSnap.transform.position, gameObject.transform.position);
+        if (distance < 0.5f && !snapped && Time.time - releaseTime > 0.3f)
         {
             snapped = true;
+            snapTime = Time.time;
         }
 
         if (snapped)
         {
-            if (vertical < 0.1f)
+            if (Time.time - snapTime <= 0.3f || vertical < 0.1f)
             {
                 objectToSnap.transform.position = objectToSnapTo.transform.position;
                 objectToSnap.transform.rotation = objectToSnapTo.transform.rotation;
             }
-            else
+            else 
             {
+                float dir = objectToSnapTo.transform.eulerAngles.z + 60;
+                objectToSnap.Unsnap(dir);
+                releaseTime = Time.time;
                 snapped = false;
             }
         }
