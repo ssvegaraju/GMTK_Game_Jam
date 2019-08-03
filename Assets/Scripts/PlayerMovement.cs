@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float rotateSpeed = 4f;
     public float lowJumpMultiplier = 1.5f, fallMultiplier = 2.5f;
 
+    public event System.Action OnRespawn;
+
     private float horizontal;
     private bool vertical;
     private bool rotate = false;
@@ -78,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Respawn() {
+        if (OnRespawn != null)
+            OnRespawn();
         isDead = false;
         rigid.gravityScale = 1f;
         isSnapped = false;
