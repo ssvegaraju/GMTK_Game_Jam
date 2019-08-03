@@ -6,20 +6,22 @@ public class MoveUpAndDown : MonoBehaviour
 {
     private Vector3 pos1;
     private Vector3 pos2;
+
+    private Vector3 startVector;
     public float distance = 1;
     public float speed = 2f;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        startVector = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        pos1 = new Vector3(transform.position.x, -distance, transform.position.z);
-        pos2 = new Vector3(transform.position.x, distance, transform.position.z);
+        pos1 = new Vector3(transform.position.x, -distance + startVector.y, transform.position.z);
+        pos2 = new Vector3(transform.position.x, distance + startVector.y, transform.position.z);
         transform.position = Vector3.Lerp(pos1, pos2, (Mathf.Sin(speed * Time.time) + 1.0f) / 2.0f);
     }
 }
