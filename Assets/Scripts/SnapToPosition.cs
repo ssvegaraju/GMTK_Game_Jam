@@ -30,6 +30,7 @@ public class SnapToPosition : MonoBehaviour
         OnUnsnap.AddListener(delegate () {
             objectToSnap.OnUnsnap();
         });
+        objectToSnap.OnRespawn += Unsnap;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
