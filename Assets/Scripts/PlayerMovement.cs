@@ -26,11 +26,14 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 moveDirection;
 
+    private Vector3 respawnPos;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
+        respawnPos = transform.position;
     }
 
     private void FixedUpdate()
@@ -74,6 +77,13 @@ public class PlayerMovement : MonoBehaviour
         Invoke("UnsnapComplete", 0.2f);
     }
 
+    public void Respawn() {
+        isDead = false;
+        rigid.gravityScale = 1f;
+        isSnapped = false;
+        transform.position = respawnPos;
+    }
+
     private void UnsnapComplete() {
         anim.ResetTrigger("Unsnap");
         isSnapped = false;
@@ -96,7 +106,15 @@ public class PlayerMovement : MonoBehaviour
             rigid.gravityScale = 0f;
             isDead = true;
             GameObject.Find("Main Camera").GetComponent<CameraFollow>().ShakeScreen(4f, 1f);
-            GameObject.Find("SceneManager").GetComponent<SceneTransitions>().SwitchScene();
+            GameObject.Find("SceneManager").GetComponent<SceneTransitions>().Respawn();
+        }
+        if (collision.gameObject.CompareTag("Key")) {
+            GameObject.Find("KeyDoor").GetComponent<CollectTriangles>().Increment();
+            Object.Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Respawn")) {
+            respawnPos = collision.gameObject.transform.position;
+            collision.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
         }
     }
 }

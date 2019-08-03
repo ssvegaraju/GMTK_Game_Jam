@@ -11,9 +11,20 @@ public class SceneTransitions : MonoBehaviour
         StartCoroutine(LoadScene());
     }
 
+    public void Respawn() {
+        StartCoroutine(LoadRespawn());
+    }
+
     IEnumerator LoadScene() {
         transistionAnim.SetTrigger("end");
         yield return new WaitForSeconds(.75f);
         SceneManager.LoadScene(sceneName);
+    }
+
+    IEnumerator LoadRespawn() {
+        transistionAnim.SetTrigger("end");
+        yield return new WaitForSeconds(.75f);
+        transistionAnim.SetTrigger("Respawn");
+        GameObject.Find("Player").GetComponent<PlayerMovement>().Respawn();
     }
 }
