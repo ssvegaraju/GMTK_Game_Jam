@@ -23,14 +23,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isDead = false;
 
     private Rigidbody2D rigid;
-    private Collider2D col;
+    public Collider2D col;
     private Animator anim;
 
     private Vector3 moveDirection;
 
     private Vector3 respawnPos;
 
-    private void Start()
+    private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();

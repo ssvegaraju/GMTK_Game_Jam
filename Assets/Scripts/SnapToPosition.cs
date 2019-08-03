@@ -13,6 +13,8 @@ public class SnapToPosition : MonoBehaviour
 
     public UnityEvent OnSnap, OnUnsnap;
 
+    private GameObject particles;
+
     private CircleCollider2D col;
     // Start is called before the first frame update
     void Start()
@@ -27,9 +29,11 @@ public class SnapToPosition : MonoBehaviour
         OnSnap.AddListener(delegate () {
             objectToSnap.OnSnap();
         });
+        OnUnsnap.AddListener(SpawnParticles);
         OnUnsnap.AddListener(delegate () {
             objectToSnap.OnUnsnap();
         });
+        particles = Resources.Load("UnsnapParticle") as GameObject;
         objectToSnap.OnRespawn += Unsnap;
     }
 
@@ -67,6 +71,10 @@ public class SnapToPosition : MonoBehaviour
         if (OnUnsnap != null) {
             OnUnsnap.Invoke();
         }
+    }
+
+    private void SpawnParticles() {
+        Destroy(Instantiate(particles, objectToSnap.transform.position, objectToSnap.transform.rotation), 1.5f);
     }
 
     private void OnDrawGizmos() {

@@ -804,6 +804,7 @@ GameObject:
   - component: {fileID: 6536075161636665705}
   - component: {fileID: 6536075161636665704}
   - component: {fileID: 6536075161636665706}
+  - component: {fileID: 6576504559439251914}
   m_Layer: 0
   m_Name: Gear
   m_TagString: Untagged
@@ -871,6 +872,22 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!111 &6576504559439251914
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6536075161636665495}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 4c97d44663bcf6e4ba463d0f94a7b84d, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 4c97d44663bcf6e4ba463d0f94a7b84d, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &6536075162093584535
 GameObject:
   m_ObjectHideFlags: 0
