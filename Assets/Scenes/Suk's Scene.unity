@@ -646,6 +646,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3189913955670245351, guid: 9e074d94875b18c40a1ccacc5c97b4eb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3189913955670245351, guid: 9e074d94875b18c40a1ccacc5c97b4eb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3189913955670245350, guid: 9e074d94875b18c40a1ccacc5c97b4eb,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -666,6 +676,21 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3189913955670245348, guid: 9e074d94875b18c40a1ccacc5c97b4eb,
+        type: 3}
+      propertyPath: lowJumpMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3189913955670245348, guid: 9e074d94875b18c40a1ccacc5c97b4eb,
+        type: 3}
+      propertyPath: fallMultiplier
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3189913955670245348, guid: 9e074d94875b18c40a1ccacc5c97b4eb,
+        type: 3}
+      propertyPath: jumpForce
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3189913955455990976, guid: 9e074d94875b18c40a1ccacc5c97b4eb,
         type: 3}
       propertyPath: m_Intensity
@@ -673,3 +698,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e074d94875b18c40a1ccacc5c97b4eb, type: 3}
+--- !u!1 &3189913955013906235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3189913955670245345, guid: 9e074d94875b18c40a1ccacc5c97b4eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 3189913955013906234}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3189913955013906236
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189913955013906235}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2268aca4d9bd104099719b024e6d453, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
