@@ -9,9 +9,23 @@ public class CollectTriangles : MonoBehaviour
     public void Increment() {
         collectedAmt++;
         Debug.Log(collectedAmt);
+        
+    }
+
+    public void Decrement() {
+        collectedAmt--;
+    }
+
+    public void TestAmt() {
         if (collectedAmt > 3) {
             GameObject.Find("Main Camera").GetComponent<CameraFollow>().ShakeScreen(3f, .7f);
-            Object.Destroy(this.gameObject);
+            Object.Destroy(GameObject.Find("Key"));
+            Object.Destroy(GameObject.Find("Key 2"));
+            Object.Destroy(GameObject.Find("Key 3"));
+            Object.Destroy(GameObject.Find("Key 4"));
+            gameObject.GetComponent<MoveDown>().enabled = true;
+            gameObject.GetComponent<MoveDown>().SetAnimatorTrigger("Opened");
+            
         }
     }
 }
