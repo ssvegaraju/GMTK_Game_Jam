@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Diffuse
+  m_Name: PlatformBackdrop
   m_Shader: {fileID: -6465566751694194690, guid: 39be9ed14b637aa47b0d75361bbc8e0b,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -33,7 +33,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: acaf35c8133a59f4db3f7cb91992c7ec, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9d1c1b20673c6fd4b9c79cd8ec647cee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2717C1B2: 1.27
+    - Vector1_2717C1B2: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -72,7 +72,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_DFBAB24D: {r: 13.164089, g: 0, b: 13.928808, a: 1}
+    - Color_DFBAB24D: {r: 0, g: 2.5043886, b: 9.965379, a: 1}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
