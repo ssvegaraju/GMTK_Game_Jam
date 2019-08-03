@@ -47,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: NeonGlowers
+    uniqueID: 3421460627
+    locked: 0
   - name: Foreground
     uniqueID: 384644161
     locked: 0
