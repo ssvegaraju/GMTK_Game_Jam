@@ -30,12 +30,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 respawnPos;
 
+    private CollectTriangles keyDoor;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
         respawnPos = transform.position;
+        keyDoor = FindObjectOfType<CollectTriangles>();
     }
 
     private void FixedUpdate()
@@ -80,33 +83,32 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Respawn() {
-        if (OnRespawn != null)
-            OnRespawn();
+        OnRespawn?.Invoke();
         isDead = false;
         rigid.gravityScale = 1f;
         isSnapped = false;
         transform.position = respawnPos;
         if (GameObject.Find("Key") != null && GameObject.Find("Key").GetComponent<KeyFollow>().enabled) {
                 GameObject.Find("Key").GetComponent<MoveUpAndDown>().setOriginal();
-                GameObject.Find("KeyDoor").GetComponent<CollectTriangles>().Decrement();
+                keyDoor.Decrement();
                 GameObject.Find("Key").GetComponent<KeyFollow>().enabled = false;
                 GameObject.Find("Key").GetComponent<PolygonCollider2D>().enabled = true;
             }
             if (GameObject.Find("Key 2") != null && GameObject.Find("Key 2").GetComponent<KeyFollow>().enabled) {
                 GameObject.Find("Key 2").GetComponent<MoveUpAndDown>().setOriginal();
-                GameObject.Find("KeyDoor").GetComponent<CollectTriangles>().Decrement();
+                keyDoor.Decrement();
                 GameObject.Find("Key 2").GetComponent<KeyFollow>().enabled = false;
                 GameObject.Find("Key 2").GetComponent<PolygonCollider2D>().enabled = true;
             }
             if (GameObject.Find("Key 3") != null && GameObject.Find("Key 3").GetComponent<KeyFollow>().enabled) {
                 GameObject.Find("Key 3").GetComponent<MoveUpAndDown>().setOriginal();
-                GameObject.Find("KeyDoor").GetComponent<CollectTriangles>().Decrement();
+                keyDoor.Decrement();
                 GameObject.Find("Key 3").GetComponent<KeyFollow>().enabled = false;
                 GameObject.Find("Key 3").GetComponent<PolygonCollider2D>().enabled = true;
             }
             if (GameObject.Find("Key 4") != null && GameObject.Find("Key 4").GetComponent<KeyFollow>().enabled) {
                 GameObject.Find("Key 4").GetComponent<MoveUpAndDown>().setOriginal();
-                GameObject.Find("KeyDoor").GetComponent<CollectTriangles>().Decrement();
+                keyDoor.Decrement();
                 GameObject.Find("Key 4").GetComponent<KeyFollow>().enabled = false;
                 GameObject.Find("Key 4").GetComponent<PolygonCollider2D>().enabled = true;
             }
@@ -137,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
             GameObject.Find("SceneManager").GetComponent<SceneTransitions>().Respawn();
         }
         if (collision.gameObject.CompareTag("Key")) {
-            GameObject.Find("KeyDoor").GetComponent<CollectTriangles>().Increment();
+            keyDoor.Increment();
             //Object.Destroy(collision.gameObject);
             collision.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             collision.gameObject.GetComponent<KeyFollow>().enabled = true;

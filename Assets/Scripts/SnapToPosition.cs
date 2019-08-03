@@ -34,7 +34,7 @@ public class SnapToPosition : MonoBehaviour
             objectToSnap.OnUnsnap();
         });
         particles = Resources.Load("UnsnapParticle") as GameObject;
-        objectToSnap.OnRespawn += Unsnap;
+        objectToSnap.OnRespawn += PlayerRespawning;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -75,6 +75,11 @@ public class SnapToPosition : MonoBehaviour
 
     private void SpawnParticles() {
         Destroy(Instantiate(particles, objectToSnap.transform.position, objectToSnap.transform.rotation), 1.5f);
+    }
+
+    public void PlayerRespawning() {
+        objectToSnap.transform.rotation = Quaternion.identity;
+        snapped = false;
     }
 
     private void OnDrawGizmos() {
