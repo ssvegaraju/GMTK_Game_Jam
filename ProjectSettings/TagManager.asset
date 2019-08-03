@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - BAD
+  - Key
   layers:
   - Default
   - TransparentFX
