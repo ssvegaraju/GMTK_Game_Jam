@@ -101,6 +101,7 @@ MonoBehaviour:
   startTransform: {x: 0, y: 0, z: 0}
   offset: {x: 0, y: 0, z: -10}
   followSmoothing: 0.547
+  minMaxCameraZoom: {x: 5, y: 8}
 --- !u!114 &9106452211258232323
 MonoBehaviour:
   m_ObjectHideFlags: 0

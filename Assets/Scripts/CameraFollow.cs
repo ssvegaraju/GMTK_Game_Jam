@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour
     [Range(0f, 1f)]
     public float followSmoothing;
 
-    public Vector2 minMaxCameraZoom;
+    public Vector2 minMaxCameraZoom = new Vector2(5, 10);
 
     private bool initialized = false;
 
@@ -45,8 +45,10 @@ public class CameraFollow : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, target.position + offset, followSmoothing);
         startTransform = transform.position;
-        if (initialized)
-            cam.orthographicSize = Mathf.Lerp(minMaxCameraZoom.x, minMaxCameraZoom.y, Time.fixedDeltaTime * rigid.velocity.sqrMagnitude / (pm.moveSpeed));
+        if (initialized) {
+            cam.orthographicSize = Mathf.MoveTowards(minMaxCameraZoom.x, minMaxCameraZoom.y, 
+                Time.fixedDeltaTime * rigid.velocity.sqrMagnitude / (pm.moveSpeed));
+        }
     }
 
     IEnumerator ScreenShake(float t, float strength){
