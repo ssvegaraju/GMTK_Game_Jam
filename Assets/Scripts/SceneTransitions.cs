@@ -24,7 +24,6 @@ public class SceneTransitions : MonoBehaviour
     IEnumerator LoadRespawn() {
         transistionAnim.SetTrigger("end");
         yield return new WaitForSeconds(.75f);
-        transistionAnim.SetTrigger("Respawn");
-        GameObject.Find("Player").GetComponent<PlayerMovement>().Respawn();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

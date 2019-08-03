@@ -12,15 +12,19 @@ public class KeyFollow : MonoBehaviour
 
     private bool reset = false;
 
+    private PlayerMovement player;
+
     void Start()
     {
-        playerPos = GameObject.Find("Player").transform.position + offset;
+        player = FindObjectOfType<PlayerMovement>();
+        playerPos = player.transform.position + offset;
         originalPos = transform.position;
+        player.OnRespawn += resetPos;
     }
 
     void FixedUpdate()
     {
-        playerPos = GameObject.Find("Player").transform.position + offset;
+        playerPos = player.transform.position + offset;
         gameObject.GetComponent<MoveUpAndDown>().setOrigin(playerPos);
         transform.position = Vector3.Slerp(transform.position, playerPos, 2f * Time.deltaTime);
     }

@@ -84,34 +84,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Respawn() {
         OnRespawn?.Invoke();
-        isDead = false;
-        rigid.gravityScale = 1f;
-        isSnapped = false;
-        transform.position = respawnPos;
-        if (GameObject.Find("Key") != null && GameObject.Find("Key").GetComponent<KeyFollow>().enabled) {
-                GameObject.Find("Key").GetComponent<MoveUpAndDown>().setOriginal();
-                keyDoor.Decrement();
-                GameObject.Find("Key").GetComponent<KeyFollow>().enabled = false;
-                GameObject.Find("Key").GetComponent<PolygonCollider2D>().enabled = true;
-            }
-            if (GameObject.Find("Key 2") != null && GameObject.Find("Key 2").GetComponent<KeyFollow>().enabled) {
-                GameObject.Find("Key 2").GetComponent<MoveUpAndDown>().setOriginal();
-                keyDoor.Decrement();
-                GameObject.Find("Key 2").GetComponent<KeyFollow>().enabled = false;
-                GameObject.Find("Key 2").GetComponent<PolygonCollider2D>().enabled = true;
-            }
-            if (GameObject.Find("Key 3") != null && GameObject.Find("Key 3").GetComponent<KeyFollow>().enabled) {
-                GameObject.Find("Key 3").GetComponent<MoveUpAndDown>().setOriginal();
-                keyDoor.Decrement();
-                GameObject.Find("Key 3").GetComponent<KeyFollow>().enabled = false;
-                GameObject.Find("Key 3").GetComponent<PolygonCollider2D>().enabled = true;
-            }
-            if (GameObject.Find("Key 4") != null && GameObject.Find("Key 4").GetComponent<KeyFollow>().enabled) {
-                GameObject.Find("Key 4").GetComponent<MoveUpAndDown>().setOriginal();
-                keyDoor.Decrement();
-                GameObject.Find("Key 4").GetComponent<KeyFollow>().enabled = false;
-                GameObject.Find("Key 4").GetComponent<PolygonCollider2D>().enabled = true;
-            }
     }
 
     private void UnsnapComplete() {
@@ -146,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Respawn")) {
             respawnPos = collision.gameObject.transform.position;
+            GameManager.instance.UpdateSpawnPosition(respawnPos);
             collision.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
         }
     }
