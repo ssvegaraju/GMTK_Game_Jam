@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     private CollectTriangles keyDoor;
 
-    private GameObject particle;
+    private GameObject particle, keyParticle;
 
     private void Awake()
     {
@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         keyDoor = FindObjectOfType<CollectTriangles>();
 
         particle = Resources.Load("RespawnParticle") as GameObject;
+        keyParticle = Resources.Load("KeyParticle") as GameObject;
     }
 
     private void FixedUpdate()
@@ -124,6 +125,8 @@ public class PlayerMovement : MonoBehaviour
             //Object.Destroy(collision.gameObject);
             collision.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             collision.gameObject.GetComponent<KeyFollow>().enabled = true;
+            Destroy(Instantiate(keyParticle, collision.gameObject.transform.position,
+                    collision.gameObject.transform.rotation), 1.5f);
         }
         if (collision.gameObject.CompareTag("Respawn")) {
             Debug.Log("Collied with checkpoint");
