@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5528495713993216710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5528495713993216708}
+  - component: {fileID: 5528495713993216709}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5528495713993216708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5528495713993216710}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 44.901756, y: 32.291634, z: -2.1210938}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5528495713993216709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5528495713993216710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a173170a34228429cfcffad66da324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: jump
+    loop: 0
+    clip: {fileID: 8300000, guid: b5a7ba2f64a4c914ba95fc31c2c6f9c0, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: death
+    loop: 0
+    clip: {fileID: 8300000, guid: bdcfebb3031e70e498d6c34d2d005a8e, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: snap
+    loop: 0
+    clip: {fileID: 8300000, guid: 0a8207103d4958d40a1cc88142b30707, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  masterVolume: 1

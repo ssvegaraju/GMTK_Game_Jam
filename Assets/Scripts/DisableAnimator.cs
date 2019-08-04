@@ -36,6 +36,7 @@ public class DisableAnimator : MonoBehaviour
 
     IEnumerator ReEnableMovement() {
         yield return new WaitForSeconds(3);
+        anim.enabled = false;
         cam.enabled = true;
         player.enabled = true;
     }

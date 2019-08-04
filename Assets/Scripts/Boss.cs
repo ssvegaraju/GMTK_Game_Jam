@@ -99,7 +99,8 @@ public class Boss : MonoBehaviour
     }
 
     private void OnDied() {
-        Destroy(gameObject);
+        anim.SetTrigger("Death");
+        Destroy(gameObject, 2);
     }
 
     private void OnHurted() {
