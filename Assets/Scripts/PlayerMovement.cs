@@ -73,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         onGround = true;
         anim.SetBool("onGround", onGround);
         anim.SetBool("Snap", true);
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("snap");
     }
 
     public void OnUnsnap() {
@@ -80,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetTrigger("Unsnap");
         rigid.velocity = transform.up * unsnapReleaseForce;
         Invoke("UnsnapComplete", 0.2f);
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("unsnap");
     }
 
     public void Respawn() {
@@ -102,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground")) {
             if (transform.position.y > collision.transform.position.y) {
                 onGround = true;
-                anim.SetBool("onGround", onGround);
+                anim.SetBool("onGround", onGround);     
             }
         }
         if (collision.gameObject.CompareTag("BAD")) {
@@ -110,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
             isDead = true;
             GameObject.Find("Main Camera").GetComponent<CameraFollow>().ShakeScreen(4f, 1f);
             GameObject.Find("SceneManager").GetComponent<SceneTransitions>().Respawn();
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("death");
         }
         if (collision.gameObject.CompareTag("Key")) {
             keyDoor.Increment();
@@ -118,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
             collision.gameObject.GetComponent<KeyFollow>().enabled = true;
         }
         if (collision.gameObject.CompareTag("Respawn")) {
+            
             respawnPos = collision.gameObject.transform.position;
             GameManager.instance.UpdateSpawnPosition(respawnPos);
             collision.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
