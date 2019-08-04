@@ -145,8 +145,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("BAD")) {
+            rigid.gravityScale = 0f;
+            isDead = true;
             GameObject.Find("Main Camera").GetComponent<CameraFollow>().ShakeScreen(4f, 1f);
             GameObject.Find("SceneManager").GetComponent<SceneTransitions>().Respawn();
+            AudioManager.instance.Play("death");
+            Respawn();
         }
         if (collision.gameObject.CompareTag("Key")) {
             keyDoor.Increment();

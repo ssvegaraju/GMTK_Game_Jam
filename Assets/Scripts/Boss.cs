@@ -55,6 +55,7 @@ public class Boss : MonoBehaviour
                 Instantiate(projectile, spawnPos + (rot1 * dirToPlayer), Quaternion.identity),
                 Instantiate(projectile, spawnPos + (rot2 * dirToPlayer), Quaternion.identity)
             };
+            AudioManager.instance.Play("boss_fire");
             float startTime = Time.time;
             foreach (GameObject bullet in bullets) {
                 bullet.transform.up = dirToPlayer;
@@ -106,6 +107,7 @@ public class Boss : MonoBehaviour
     private void OnHurted() {
         invincible = true;
         anim.SetTrigger("Hurt");
+        AudioManager.instance.Play("boss_hit");
         Invoke("ResetInvincibility", 1);
     }
 

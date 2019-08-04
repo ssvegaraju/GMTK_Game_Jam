@@ -129,3 +129,15 @@ MonoBehaviour:
     volume: 1
     pitch: 2.36
     source: {fileID: 0}
+  - name: boss_hit
+    loop: 0
+    clip: {fileID: 8300000, guid: 38f5571707e927243897e459febf5fe9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: boss_fire
+    loop: 0
+    clip: {fileID: 8300000, guid: 38f5571707e927243897e459febf5fe9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
