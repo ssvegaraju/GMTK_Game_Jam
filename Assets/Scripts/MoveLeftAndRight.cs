@@ -24,4 +24,10 @@ public class MoveLeftAndRight : MonoBehaviour
         pos2 = new Vector3(distance + startVector.x, transform.position.y, transform.position.z);
         transform.position = Vector3.Lerp(pos1, pos2, (Mathf.Sin(speed * Time.time) + 1.0f) / 2.0f);
     }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * distance);
+        Gizmos.DrawLine(transform.position, transform.position - Vector3.right * distance);
+    }
 }

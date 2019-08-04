@@ -45,12 +45,16 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void StartNewGame() {
-        StartCoroutine(LoadScene());
+        StartCoroutine(LoadScene("Level 1"));
     }
 
-    private IEnumerator LoadScene() {
+    public void BackToMainMenu() {
+        StartCoroutine(LoadScene("MainMenu"));
+    }
+
+    private IEnumerator LoadScene(string sceneName) {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadSceneAsync("Level 1");
+        SceneManager.LoadSceneAsync(sceneName);
     }
 
     public void Options() {
