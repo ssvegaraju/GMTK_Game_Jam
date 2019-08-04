@@ -33,4 +33,8 @@ public class MoveDown : MonoBehaviour
             anim = GetComponent<Animator>();
         anim.SetBool("Opened", true);
     }
+
+    public void OnDestroy() {
+        pm.OnRespawn -= ResetOnRespawn;
+    }
 }

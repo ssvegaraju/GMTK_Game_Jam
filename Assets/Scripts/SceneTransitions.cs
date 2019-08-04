@@ -26,12 +26,12 @@ public class SceneTransitions : MonoBehaviour
     IEnumerator LoadScene() {
         transistionAnim.SetTrigger("end");
         yield return new WaitForSeconds(.75f);
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadSceneAsync(sceneName);
     }
 
     IEnumerator LoadRespawn() {
         transistionAnim.SetTrigger("end");
         yield return new WaitForSeconds(.75f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -107,12 +107,13 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("onGround", onGround);     
             }
         }
-        if (collision.gameObject.CompareTag("BAD")) {
+        if (collision.gameObject.CompareTag("BAD") && !isDead) {
             rigid.gravityScale = 0f;
             isDead = true;
             GameObject.Find("Main Camera").GetComponent<CameraFollow>().ShakeScreen(4f, 1f);
             GameObject.Find("SceneManager").GetComponent<SceneTransitions>().Respawn();
             GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("death");
+            Respawn();
         }
         if (collision.gameObject.CompareTag("Key")) {
             keyDoor.Increment();
@@ -121,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
             collision.gameObject.GetComponent<KeyFollow>().enabled = true;
         }
         if (collision.gameObject.CompareTag("Respawn")) {
-            
+            Debug.Log("Collied with checkpoint");
             respawnPos = collision.gameObject.transform.position;
             GameManager.instance.UpdateSpawnPosition(respawnPos);
             collision.gameObject.GetComponent<PolygonCollider2D>().enabled = false;

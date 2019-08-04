@@ -102,6 +102,10 @@ public class SnapToPosition : MonoBehaviour
         snapped = false;
     }
 
+    public void OnDestroy() {
+        objectToSnap.OnRespawn -= PlayerRespawning;
+    }
+
     private void OnDrawGizmos() {
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position + offset, detectionRadius);
