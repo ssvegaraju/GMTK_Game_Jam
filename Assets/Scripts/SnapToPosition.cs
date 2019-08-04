@@ -18,6 +18,7 @@ public class SnapToPosition : MonoBehaviour
     public LayerMask bossLayer;
 
     private CircleCollider2D col;
+    private bool finishedUnsnapping = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,19 +65,18 @@ public class SnapToPosition : MonoBehaviour
     }
 
     private void Snap() {
-        if (snapped)
+        if (snapped || !finishedUnsnapping)
             return;
         snapped = true;
         if (OnSnap != null) {
             OnSnap.Invoke();
         }
-        Debug.Log("Snapped");
+        finishedUnsnapping = false;
         StartCoroutine(WhileSnapping());
     }
 
     private IEnumerator WhileSnapping() {
-        float startTime = Time.time;
-        while (snapped || Time.time - startTime < 0.5f) {
+        while (snapped) {
             objectToSnap.transform.position = objectToSnapTo.transform.position;
             objectToSnap.transform.rotation = objectToSnapTo.transform.rotation;
             snapped = !Input.GetButtonDown("Jump");
@@ -91,6 +91,7 @@ public class SnapToPosition : MonoBehaviour
         if (OnUnsnap != null) {
             OnUnsnap.Invoke();
         }
+        finishedUnsnapping = true;
     }
 
     private void SpawnParticles() {
@@ -100,6 +101,10 @@ public class SnapToPosition : MonoBehaviour
     public void PlayerRespawning() {
         objectToSnap.transform.rotation = Quaternion.identity;
         snapped = false;
+    }
+
+    public void OnDestroy() {
+        objectToSnap.OnRespawn -= PlayerRespawning;
     }
 
     private void OnDrawGizmos() {

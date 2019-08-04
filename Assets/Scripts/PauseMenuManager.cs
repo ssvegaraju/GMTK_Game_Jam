@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuManager : MonoBehaviour
+public class PauseMenuManager : MonoBehaviour
 {
+    public GameObject pauseCanvas;
     public MenuButton[] buttons;
 
     private int currentIndex = 0;
@@ -12,18 +13,33 @@ public class MainMenuManager : MonoBehaviour
     private float inputDelay = 0.3f;
     private float lastInputTime;
 
+    public bool isPaused {
+        get;
+        private set;
+    }
+
     // Start is called before the first frame update
     void Start() {
         buttons[0].OnSelectedButton();
+        pauseCanvas.SetActive(false);
     }
 
     // Update is called once per frame
     void Update() {
-        if (buttons == null)
+        if (Input.GetButtonDown("Cancel")) {
+            if (!isPaused) {
+                Time.timeScale = 0;
+                pauseCanvas.SetActive(true);
+                isPaused = true;
+            } else {
+                Unpause();
+            }
+        }
+        if (buttons == null || !isPaused)
             return;
         float input = Input.GetAxisRaw("Vertical");
-        if (Mathf.Abs(input) > 0.1f && Time.time - lastInputTime > inputDelay) {
-            lastInputTime = Time.time;
+        if (Mathf.Abs(input) > 0.1f && Time.realtimeSinceStartup - lastInputTime > inputDelay) {
+            lastInputTime = Time.realtimeSinceStartup;
             int newIndex = (input < 0) ? currentIndex + 1 : currentIndex - 1;
             if (newIndex >= buttons.Length) {
                 newIndex = 0;
@@ -44,20 +60,19 @@ public class MainMenuManager : MonoBehaviour
         current.OnSelectedButton();
     }
 
-    public void StartNewGame() {
-        StartCoroutine(LoadScene("Level 1"));
+    public void Unpause() {
+        pauseCanvas.SetActive(false);
+        Time.timeScale = 1;
+        isPaused = false;
     }
 
     public void BackToMainMenu() {
-        StartCoroutine(LoadScene("MainMenu"));
-    }
-
-    public void LoadNewScene(string sceneName) {
-        StartCoroutine(LoadScene(sceneName, 0.5f));
+        Time.timeScale = 1;
+        StartCoroutine(LoadScene("MainMenu", 0.5f));
     }
 
     private IEnumerator LoadScene(string sceneName, float delay = 1) {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
         SceneManager.LoadSceneAsync(sceneName);
     }
 
