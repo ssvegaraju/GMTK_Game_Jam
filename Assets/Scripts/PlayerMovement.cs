@@ -76,12 +76,14 @@ public class PlayerMovement : MonoBehaviour
     public void OnSnap() {
         isSnapped = true;
         onGround = true;
+        rigid.gravityScale = 0;
         anim.SetBool("onGround", onGround);
         anim.SetBool("Snap", true);
         AudioManager.instance.Play("snap");
     }
 
     public void OnUnsnap() {
+        rigid.gravityScale = 1;
         anim.SetBool("Snap", false);
         anim.SetTrigger("Unsnap");
         rigid.velocity = transform.up * unsnapReleaseForce;

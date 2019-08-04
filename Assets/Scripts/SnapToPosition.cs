@@ -17,11 +17,14 @@ public class SnapToPosition : MonoBehaviour
     private GameObject laser;
     public LayerMask bossLayer;
 
+    private PauseMenuManager pause;
+
     private CircleCollider2D col;
     private bool finishedUnsnapping = true;
     // Start is called before the first frame update
     void Start()
     {
+        pause = FindObjectOfType<PauseMenuManager>();
         col = GetComponent<CircleCollider2D>();
         if (col == null)
             col = gameObject.AddComponent<CircleCollider2D>();
@@ -79,7 +82,7 @@ public class SnapToPosition : MonoBehaviour
         while (snapped) {
             objectToSnap.transform.position = objectToSnapTo.transform.position;
             objectToSnap.transform.rotation = objectToSnapTo.transform.rotation;
-            snapped = !Input.GetButtonDown("Jump");
+            snapped = !pause.isPaused && !Input.GetButtonDown("Jump");
             yield return null;
         }
         Unsnap();
