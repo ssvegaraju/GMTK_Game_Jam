@@ -148,5 +148,14 @@ public class PlayerMovement : MonoBehaviour
             GameObject.Find("Main Camera").GetComponent<CameraFollow>().ShakeScreen(4f, 1f);
             GameObject.Find("SceneManager").GetComponent<SceneTransitions>().Respawn();
         }
+        if (collision.gameObject.CompareTag("Key")) {
+            keyDoor.Increment();
+            //Object.Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+            collision.gameObject.GetComponent<KeyFollow>().enabled = true;
+            AudioManager.instance.Play("collect");
+            Destroy(Instantiate(keyParticle, collision.gameObject.transform.position,
+                    collision.gameObject.transform.rotation), 1.5f);
+        }
     }
 }

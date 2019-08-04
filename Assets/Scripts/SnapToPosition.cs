@@ -79,12 +79,16 @@ public class SnapToPosition : MonoBehaviour
     }
 
     private IEnumerator WhileSnapping() {
-        while (snapped) {
+        snapped = true;
+        bool release = false;
+        while (!release) {
             objectToSnap.transform.position = objectToSnapTo.transform.position;
             objectToSnap.transform.rotation = objectToSnapTo.transform.rotation;
-            snapped = !pause.isPaused && !Input.GetButtonDown("Jump");
+            if (!pause.isPaused)
+                release = Input.GetButtonDown("Jump");
             yield return null;
         }
+        Debug.Log("Unsnapping");
         Unsnap();
     }
 
