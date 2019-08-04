@@ -39,12 +39,13 @@ public class MainMenuManager : MonoBehaviour
             currentIndex = newIndex;
         }
         if (Input.GetButtonDown("Submit")) {
+            AudioManager.instance.Play("ui_select");
             buttons[currentIndex].OnPressedButton();
         }
     }
 
     private void ChangeSelection(MenuButton old, MenuButton current) {
-        AudioManager.instance.Play("ui_select");
+        AudioManager.instance.Play("ui_change");
         old.OnUnselectedButton();
         current.OnSelectedButton();
     }
