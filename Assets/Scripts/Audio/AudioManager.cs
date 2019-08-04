@@ -36,6 +36,7 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s != null)
             s.source.Play();
+                    Debug.Log("bleg");
     }
 
     public void ChangeSoundVolume(string name, float newVolume) {

@@ -92,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Jump() {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("jump");
         moveDirection.y = jumpForce;
         onGround = false;
         anim.SetBool("onGround", onGround);
