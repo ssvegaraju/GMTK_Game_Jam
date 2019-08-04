@@ -22,6 +22,7 @@ public class Boss : MonoBehaviour
 
     private SceneTransitions st;
     private Animator anim;
+    private Collider2D col;
 
     private bool invincible = false;
 
@@ -36,6 +37,7 @@ public class Boss : MonoBehaviour
             target = FindObjectOfType<PlayerMovement>().transform;
         }
         anim = GetComponent<Animator>();
+        col = GetComponent<Collider2D>();
         currentHealth = maxHealth;
         st = FindObjectOfType<SceneTransitions>();
         OnHurt.AddListener(OnHurted);
@@ -100,6 +102,7 @@ public class Boss : MonoBehaviour
     }
 
     private void OnDied() {
+        col.enabled = false;
         AudioManager.instance.Play("boss_death");
         anim.SetTrigger("Death");
         Destroy(gameObject, 2);

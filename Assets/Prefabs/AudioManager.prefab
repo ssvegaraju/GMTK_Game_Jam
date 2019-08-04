@@ -132,7 +132,7 @@ MonoBehaviour:
   - name: boss_hit
     loop: 0
     clip: {fileID: 8300000, guid: 3b00eefc036626d4d89c3d007e9b66ba, type: 3}
-    volume: 1
+    volume: 0.697
     pitch: 1
     source: {fileID: 0}
   - name: boss_fire
@@ -144,12 +144,12 @@ MonoBehaviour:
   - name: boss_death
     loop: 0
     clip: {fileID: 8300000, guid: dc89493831652ca4fb8884abe2c0781d, type: 3}
-    volume: 1
+    volume: 0.549
     pitch: 1
     source: {fileID: 0}
   - name: lasers
     loop: 0
     clip: {fileID: 8300000, guid: aba1c6d8522b55443bf18e82e417c57d, type: 3}
-    volume: 1
+    volume: 0.736
     pitch: 1
     source: {fileID: 0}
