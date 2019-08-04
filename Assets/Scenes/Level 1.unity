@@ -23469,8 +23469,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: 350
-    m_UpperAngle: 370
+    m_LowerAngle: 10
+    m_UpperAngle: -10
 --- !u!50 &1254209227
 Rigidbody2D:
   serializedVersion: 4
@@ -23507,9 +23507,9 @@ SpringJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -8.826069, y: 0.12608671}
+  m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 11.799503
+  m_Distance: 3.7692044
   m_DampingRatio: 0
   m_Frequency: 1
 --- !u!1001 &1267938095
