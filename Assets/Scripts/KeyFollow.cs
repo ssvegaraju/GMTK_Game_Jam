@@ -32,8 +32,4 @@ public class KeyFollow : MonoBehaviour
     public void resetPos() {
         transform.position = originalPos;
     }
-
-    public void OnDestroy() {
-        player.OnRespawn -= resetPos;
-    }
 }

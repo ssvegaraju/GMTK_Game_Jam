@@ -30,9 +30,9 @@ public class GameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         Debug.Log(current + ", " + scene.name);
         player = FindObjectOfType<PlayerMovement>();
+        firstTime = current != scene.name;
         if (player == null)
             return;
-        firstTime = current != scene.name;
         if (firstTime) {
             playerSpawnPosition = player.transform.position;
             current = scene.name;

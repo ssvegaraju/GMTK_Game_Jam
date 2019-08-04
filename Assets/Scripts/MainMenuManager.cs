@@ -52,13 +52,13 @@ public class MainMenuManager : MonoBehaviour
         StartCoroutine(LoadScene("MainMenu"));
     }
 
-    private IEnumerator LoadScene(string sceneName) {
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadSceneAsync(sceneName);
+    public void LoadNewScene(string sceneName) {
+        StartCoroutine(LoadScene(sceneName, 0.5f));
     }
 
-    public void Options() {
-
+    private IEnumerator LoadScene(string sceneName, float delay = 1) {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadSceneAsync(sceneName);
     }
 
     public void QuitGame() {
