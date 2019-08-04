@@ -14,6 +14,8 @@ public class SnapToPosition : MonoBehaviour
     public UnityEvent OnSnap, OnUnsnap;
 
     private GameObject particles;
+    private GameObject laser;
+    public LayerMask bossLayer;
 
     private CircleCollider2D col;
     // Start is called before the first frame update
@@ -34,12 +36,30 @@ public class SnapToPosition : MonoBehaviour
             objectToSnap.OnUnsnap();
         });
         particles = Resources.Load("UnsnapParticle") as GameObject;
+        laser = Resources.Load("Laser") as GameObject;
         objectToSnap.OnRespawn += PlayerRespawning;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (!snapped && collision.gameObject.CompareTag("Player")) {
             Snap();
+        }
+    }
+
+    public void SpawnLaser() {
+        GameObject g = Instantiate(laser, objectToSnap.transform.position, objectToSnap.transform.rotation);
+        Destroy(g, 1.5f);
+        StartCoroutine(CheckCollision(g));
+    }
+
+    private IEnumerator CheckCollision(GameObject g) {
+        while (g != null) {
+            Debug.DrawRay(g.transform.position, g.transform.up * 100, Color.white);
+            RaycastHit2D hit = Physics2D.Raycast(g.transform.position, g.transform.up, 100, bossLayer);
+            if (hit) {
+                hit.collider.GetComponent<Boss>().TakeDamage(1);
+            }
+            yield return null;
         }
     }
 

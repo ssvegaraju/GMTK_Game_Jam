@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitions : MonoBehaviour
 {
+    public static SceneTransitions instance;
+    private void Awake() {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
+
     public Animator transistionAnim;
     public string sceneName;
     public void SwitchScene() {

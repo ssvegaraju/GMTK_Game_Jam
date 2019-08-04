@@ -42,6 +42,5 @@ public class GameManager : MonoBehaviour
 
     public void UpdateSpawnPosition(Vector3 pos) {
         playerSpawnPosition = pos;
-        Debug.Log(playerSpawnPosition);
     }
 }
