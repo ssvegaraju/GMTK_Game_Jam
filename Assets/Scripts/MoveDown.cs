@@ -18,7 +18,7 @@ public class MoveDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(0, -.07f, 0);
+        transform.position += new Vector3(0, -4f * Time.deltaTime, 0);
     }
 
     private void ResetOnRespawn() {
