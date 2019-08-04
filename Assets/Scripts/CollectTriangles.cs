@@ -39,6 +39,7 @@ public class CollectTriangles : MonoBehaviour
                 key.Translate(dirToParent * Time.deltaTime * 8);
                 yield return null;
             }
+            AudioManager.instance.Play("key_use");
             Destroy(key.gameObject);
             parent.rotation = Quaternion.identity;
         }

@@ -8,6 +8,7 @@ public class Goal : MonoBehaviour
     public string sceneName;
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
+            AudioManager.instance.Play("goal");
             SceneManager.LoadSceneAsync(sceneName);
         }
     }

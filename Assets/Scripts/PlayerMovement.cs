@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         onGround = true;
         anim.SetBool("onGround", onGround);
         anim.SetBool("Snap", true);
-        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("snap");
+        AudioManager.instance.Play("snap");
     }
 
     public void OnUnsnap() {
@@ -86,11 +86,12 @@ public class PlayerMovement : MonoBehaviour
         anim.SetTrigger("Unsnap");
         rigid.velocity = transform.up * unsnapReleaseForce;
         Invoke("UnsnapComplete", 0.2f);
-        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("unsnap");
+        AudioManager.instance.Play("unsnap");
     }
 
     public void Respawn() {
         OnRespawn?.Invoke();
+        AudioManager.instance.Play("respawn");
     }
 
     private void UnsnapComplete() {
@@ -99,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Jump() {
-        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("jump");
+        AudioManager.instance.Play("jump");
         moveDirection.y = jumpForce;
         onGround = false;
         anim.SetBool("onGround", onGround);
@@ -117,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
             isDead = true;
             GameObject.Find("Main Camera").GetComponent<CameraFollow>().ShakeScreen(4f, 1f);
             GameObject.Find("SceneManager").GetComponent<SceneTransitions>().Respawn();
-            GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("death");
+            AudioManager.instance.Play("death");
             Respawn();
         }
         if (collision.gameObject.CompareTag("Key")) {
@@ -125,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
             //Object.Destroy(collision.gameObject);
             collision.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             collision.gameObject.GetComponent<KeyFollow>().enabled = true;
+            AudioManager.instance.Play("collect");
             Destroy(Instantiate(keyParticle, collision.gameObject.transform.position,
                     collision.gameObject.transform.rotation), 1.5f);
         }
@@ -133,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
             respawnPos = collision.gameObject.transform.position;
             GameManager.instance.UpdateSpawnPosition(respawnPos);
             collision.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+            AudioManager.instance.Play("checkpoint");
             Destroy(Instantiate(particle, collision.gameObject.transform.position, 
                     collision.gameObject.transform.rotation), 1.5f);
         }

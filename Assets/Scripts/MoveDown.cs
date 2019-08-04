@@ -28,6 +28,7 @@ public class MoveDown : MonoBehaviour
     }
 
     public void SetAnimatorTrigger(string trigger) {
+        AudioManager.instance.Play("door_open");
         CameraFollow.instance.ShakeScreen(0.1f, 0.1f);
         if (anim == null)
             anim = GetComponent<Animator>();

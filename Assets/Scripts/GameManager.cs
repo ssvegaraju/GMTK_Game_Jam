@@ -28,7 +28,13 @@ public class GameManager : MonoBehaviour
     private bool firstTime = true;
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        Debug.Log(current + ", " + scene.name);
+        if ((scene.name == "Credits" || scene.name == "MainMenu") && !AudioManager.instance.IsPlaying("Chill")) {
+            AudioManager.instance.StopAllSounds();
+            AudioManager.instance.Play("Chill");
+        } else if (!AudioManager.instance.IsPlaying("LooperWave")) {
+            AudioManager.instance.StopAllSounds();
+            AudioManager.instance.Play("LooperWave");
+        }
         player = FindObjectOfType<PlayerMovement>();
         firstTime = current != scene.name;
         if (player == null)

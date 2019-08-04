@@ -56,6 +56,7 @@ public class PauseMenuManager : MonoBehaviour
     }
 
     private void ChangeSelection(MenuButton old, MenuButton current) {
+        AudioManager.instance.Play("ui_select");
         old.OnUnselectedButton();
         current.OnSelectedButton();
     }

@@ -43,35 +43,83 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a173170a34228429cfcffad66da324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterVolume: 1
   sounds:
   - name: jump
     loop: 0
-    clip: {fileID: 8300000, guid: b5a7ba2f64a4c914ba95fc31c2c6f9c0, type: 3}
-    volume: 0.122
+    clip: {fileID: 8300000, guid: aec001ccb428c224797b56db8a27fb9b, type: 3}
+    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: death
     loop: 0
-    clip: {fileID: 8300000, guid: bdcfebb3031e70e498d6c34d2d005a8e, type: 3}
-    volume: 0.126
+    clip: {fileID: 8300000, guid: 3adc550c6239cbe4faf43e2317673861, type: 3}
+    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: snap
     loop: 0
-    clip: {fileID: 8300000, guid: 0a8207103d4958d40a1cc88142b30707, type: 3}
-    volume: 0.293
-    pitch: 1.77
+    clip: {fileID: 8300000, guid: 6dc97d5045c2bdc48b41b28b55d475d4, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
   - name: unsnap
     loop: 0
-    clip: {fileID: 8300000, guid: 0a8207103d4958d40a1cc88142b30707, type: 3}
-    volume: 0.293
-    pitch: 2.25
+    clip: {fileID: 8300000, guid: 2cb82f817db4135439a4262dcfaf8e84, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
-  - name: touchGround
+  - name: checkpoint
     loop: 0
-    clip: {fileID: 8300000, guid: b5a7ba2f64a4c914ba95fc31c2c6f9c0, type: 3}
-    volume: 0.031
+    clip: {fileID: 8300000, guid: bbc6c822366bab646b8a082d3b227924, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: goal
+    loop: 0
+    clip: {fileID: 8300000, guid: 78c1e2349286b10448703d276d825e96, type: 3}
+    volume: 1
     pitch: 0.52
     source: {fileID: 0}
-  masterVolume: 1
+  - name: door_open
+    loop: 0
+    clip: {fileID: 8300000, guid: 2c5c5f482a6e6f14291b5de952864259, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: respawn
+    loop: 0
+    clip: {fileID: 8300000, guid: d5bb336f5d315b149b81407ac4a35df0, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: ui_select
+    loop: 0
+    clip: {fileID: 8300000, guid: 38f5571707e927243897e459febf5fe9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: collect
+    loop: 0
+    clip: {fileID: 8300000, guid: 9f780cd4c069ecd4390fd0bbd0b7bfbe, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: key_use
+    loop: 0
+    clip: {fileID: 8300000, guid: 8c09a6cd9a0c0a040ab6dfb129dd99f2, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Chill
+    loop: 1
+    clip: {fileID: 8300000, guid: 763918d28dadb5944ac8b3c74c1149f5, type: 3}
+    volume: 0.145
+    pitch: 1
+    source: {fileID: 0}
+  - name: LooperWave
+    loop: 1
+    clip: {fileID: 8300000, guid: ef6ec0d80353e3241ab918ec66d701a7, type: 3}
+    volume: 0.174
+    pitch: 1
+    source: {fileID: 0}

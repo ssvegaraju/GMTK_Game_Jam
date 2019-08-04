@@ -91,6 +91,26 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.7129042
       objectReference: {fileID: 0}
+    - target: {fileID: 6015492004875530689, guid: a97e241e6d632514da4493a4eba52ea4,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015492004875530689, guid: a97e241e6d632514da4493a4eba52ea4,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015492004875530689, guid: a97e241e6d632514da4493a4eba52ea4,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015492004875530689, guid: a97e241e6d632514da4493a4eba52ea4,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 27137545, guid: a97e241e6d632514da4493a4eba52ea4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a97e241e6d632514da4493a4eba52ea4, type: 3}

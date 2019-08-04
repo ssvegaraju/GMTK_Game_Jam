@@ -29,8 +29,8 @@ public class AudioManager : MonoBehaviour
     }
     #endregion
 
-    public Sound[] sounds;
     public float masterVolume = 1;
+    public Sound[] sounds;
 
     public void Play(string name) {
         Sound s = Array.Find(sounds, sound => sound.name == name);

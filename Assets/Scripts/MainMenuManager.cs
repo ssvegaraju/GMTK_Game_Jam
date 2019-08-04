@@ -14,6 +14,10 @@ public class MainMenuManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        if (!AudioManager.instance.IsPlaying("Chill")) {
+            AudioManager.instance.StopAllSounds();
+            AudioManager.instance.Play("Chill");
+        }
         buttons[0].OnSelectedButton();
     }
 
@@ -40,6 +44,7 @@ public class MainMenuManager : MonoBehaviour
     }
 
     private void ChangeSelection(MenuButton old, MenuButton current) {
+        AudioManager.instance.Play("ui_select");
         old.OnUnselectedButton();
         current.OnSelectedButton();
     }
