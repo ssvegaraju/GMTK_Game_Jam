@@ -35,4 +35,10 @@ public class MoveUpAndDown : MonoBehaviour
     public void setOriginal() {
         startVector = originalPos;
     }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.up * distance);
+        Gizmos.DrawLine(transform.position, transform.position - Vector3.up * distance);
+    }
 }
