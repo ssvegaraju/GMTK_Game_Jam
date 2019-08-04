@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
     private CollectTriangles keyDoor;
 
+    private GameObject particle;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -39,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         respawnPos = transform.position;
         keyDoor = FindObjectOfType<CollectTriangles>();
+
+        particle = Resources.Load("RespawnParticle") as GameObject;
     }
 
     private void FixedUpdate()
@@ -126,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
             respawnPos = collision.gameObject.transform.position;
             GameManager.instance.UpdateSpawnPosition(respawnPos);
             collision.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+            Destroy(Instantiate(particle, collision.gameObject.transform.position, 
+                    collision.gameObject.transform.rotation), 1.5f);
         }
     }
 
