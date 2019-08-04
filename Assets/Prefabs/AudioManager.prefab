@@ -60,7 +60,7 @@ MonoBehaviour:
   - name: snap
     loop: 0
     clip: {fileID: 8300000, guid: 6dc97d5045c2bdc48b41b28b55d475d4, type: 3}
-    volume: 1
+    volume: 0.628
     pitch: 1
     source: {fileID: 0}
   - name: unsnap
@@ -79,12 +79,12 @@ MonoBehaviour:
     loop: 0
     clip: {fileID: 8300000, guid: 78c1e2349286b10448703d276d825e96, type: 3}
     volume: 1
-    pitch: 0.52
+    pitch: 1
     source: {fileID: 0}
   - name: door_open
     loop: 0
     clip: {fileID: 8300000, guid: 2c5c5f482a6e6f14291b5de952864259, type: 3}
-    volume: 1
+    volume: 0.513
     pitch: 1
     source: {fileID: 0}
   - name: respawn
