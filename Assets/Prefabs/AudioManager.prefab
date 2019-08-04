@@ -131,13 +131,25 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: boss_hit
     loop: 0
-    clip: {fileID: 8300000, guid: 38f5571707e927243897e459febf5fe9, type: 3}
+    clip: {fileID: 8300000, guid: 3b00eefc036626d4d89c3d007e9b66ba, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: boss_fire
     loop: 0
-    clip: {fileID: 8300000, guid: 38f5571707e927243897e459febf5fe9, type: 3}
+    clip: {fileID: 8300000, guid: b7532ff5b2c1cdc4488810114ed5a4e3, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: boss_death
+    loop: 0
+    clip: {fileID: 8300000, guid: dc89493831652ca4fb8884abe2c0781d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: lasers
+    loop: 0
+    clip: {fileID: 8300000, guid: aba1c6d8522b55443bf18e82e417c57d, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}

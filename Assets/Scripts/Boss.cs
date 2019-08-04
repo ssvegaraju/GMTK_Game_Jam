@@ -100,6 +100,7 @@ public class Boss : MonoBehaviour
     }
 
     private void OnDied() {
+        AudioManager.instance.Play("boss_death");
         anim.SetTrigger("Death");
         Destroy(gameObject, 2);
     }

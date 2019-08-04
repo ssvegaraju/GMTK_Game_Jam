@@ -51,6 +51,7 @@ public class SnapToPosition : MonoBehaviour
     }
 
     public void SpawnLaser() {
+        AudioManager.instance.Play("lasers");
         GameObject g = Instantiate(laser, objectToSnap.transform.position, objectToSnap.transform.rotation);
         Destroy(g, 1.5f);
         StartCoroutine(CheckCollision(g));
