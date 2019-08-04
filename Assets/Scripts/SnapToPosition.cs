@@ -76,7 +76,7 @@ public class SnapToPosition : MonoBehaviour
 
     private IEnumerator WhileSnapping() {
         float startTime = Time.time;
-        while (snapped || Time.time - startTime < 0.5f) {
+        while (snapped || Time.time - startTime < 0.1f) {
             objectToSnap.transform.position = objectToSnapTo.transform.position;
             objectToSnap.transform.rotation = objectToSnapTo.transform.rotation;
             snapped = !Input.GetButtonDown("Jump");
