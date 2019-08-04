@@ -935,10 +935,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
+  - name: jump
     loop: 0
-    clip: {fileID: 0}
-    volume: 0
+    clip: {fileID: 8300000, guid: b5a7ba2f64a4c914ba95fc31c2c6f9c0, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: death
+    loop: 0
+    clip: {fileID: 8300000, guid: bdcfebb3031e70e498d6c34d2d005a8e, type: 3}
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - name: snap
+    loop: 0
+    clip: {fileID: 8300000, guid: 0a8207103d4958d40a1cc88142b30707, type: 3}
+    volume: 1
     pitch: 0
     source: {fileID: 0}
   masterVolume: 1
