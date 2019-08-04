@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -938,20 +938,32 @@ MonoBehaviour:
   - name: jump
     loop: 0
     clip: {fileID: 8300000, guid: b5a7ba2f64a4c914ba95fc31c2c6f9c0, type: 3}
-    volume: 1
+    volume: 0.122
     pitch: 1
     source: {fileID: 0}
   - name: death
     loop: 0
     clip: {fileID: 8300000, guid: bdcfebb3031e70e498d6c34d2d005a8e, type: 3}
-    volume: 1
+    volume: 0.126
     pitch: 1
     source: {fileID: 0}
   - name: snap
     loop: 0
     clip: {fileID: 8300000, guid: 0a8207103d4958d40a1cc88142b30707, type: 3}
-    volume: 1
-    pitch: 1
+    volume: 0.293
+    pitch: 1.77
+    source: {fileID: 0}
+  - name: unsnap
+    loop: 0
+    clip: {fileID: 8300000, guid: 0a8207103d4958d40a1cc88142b30707, type: 3}
+    volume: 0.293
+    pitch: 2.25
+    source: {fileID: 0}
+  - name: touchGround
+    loop: 0
+    clip: {fileID: 8300000, guid: b5a7ba2f64a4c914ba95fc31c2c6f9c0, type: 3}
+    volume: 0.031
+    pitch: 0.52
     source: {fileID: 0}
   masterVolume: 1
 --- !u!4 &759998447
