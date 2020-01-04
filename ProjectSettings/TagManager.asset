@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - BAD
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -13,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Boss
+  - Checkpoint
+  - Spikes
   - 
   - 
   - 
@@ -38,6 +41,30 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1071092355
+    locked: 0
+  - name: Outlines
+    uniqueID: 408831973
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: NeonGlowers
+    uniqueID: 3421460627
+    locked: 0
+  - name: Foreground
+    uniqueID: 384644161
+    locked: 0
+  - name: Particle
+    uniqueID: 1283864417
+    locked: 0
+  - name: Key
+    uniqueID: 2671374921
+    locked: 0
+  - name: Checkpoint
+    uniqueID: 3990455565
+    locked: 0
+  - name: KeyLight
+    uniqueID: 1037733221
     locked: 0
